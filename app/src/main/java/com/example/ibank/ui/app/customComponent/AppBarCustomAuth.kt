@@ -39,7 +39,6 @@ fun  AppBarCustomAuth(
     Box(
 
         modifier = Modifier
-            .padding(WindowInsets.statusBars.asPaddingValues())
             .fillMaxWidth()
             .height(50.dp)
             .background(Purple),

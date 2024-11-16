@@ -1,7 +1,8 @@
-package com.example.ibank.ui.app.screen.main
+package com.example.ibank.ui.app.screen.main.Search
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -20,14 +20,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
 import com.example.ibank.R
 import com.example.ibank.ui.app.customComponent.CustomMainAppBar
 import com.example.ibank.ui.app.data.SearchItem
+import com.example.ibank.ui.app.screen.main.Home.cardBank
 import com.example.ibank.ui.theme.MinorAuthText
 import com.example.ibank.ui.theme.SearchMainText
 import com.example.ibank.ui.theme.White
@@ -38,7 +37,7 @@ val SearchScreenList = listOf(
 
         mainText = "Branch",
         minorText = "Search for branch",
-        image = R.drawable.succesfully_pasword
+        image = R.drawable.branch_item
 
     ),
 
@@ -46,7 +45,7 @@ val SearchScreenList = listOf(
 
         mainText = "Interest rate",
         minorText = "Search for interest rate",
-        image = R.drawable.succesfully_pasword
+        image = R.drawable.rate_item
 
     ),
 
@@ -54,7 +53,7 @@ val SearchScreenList = listOf(
 
         mainText = "Exchange rate",
         minorText = "Search for exchange rate",
-        image = R.drawable.succesfully_pasword
+        image = R.drawable.rate_item_2
 
     ),
 
@@ -62,14 +61,18 @@ val SearchScreenList = listOf(
 
         mainText = "Exchange",
         minorText = "Exchange amount of money",
-        image = R.drawable.succesfully_pasword
+        image = R.drawable.excahnge_item
 
-    ),
+    )
 
 )
 
 @Composable
-fun SearchScreen() {
+fun SearchScreen(
+
+    onMapsBranch: () -> Unit
+
+) {
 
 
 
@@ -87,18 +90,28 @@ fun SearchScreen() {
         Column(
 
             modifier = Modifier
-                .padding(horizontal = 24.dp)
                 .fillMaxSize()
 
         ) {
 
             LazyColumn(
 
+
             ) {
 
-                items(SearchScreenList.size) {
+                items(SearchScreenList.size) { index ->
 
-                    SearchDesignItem(it)
+                    SearchDesignItem(index = index, onclick = {
+
+                        val card = SearchScreenList[index]
+
+                        if (card == SearchScreenList[0]) {
+
+                            onMapsBranch()
+
+                        }
+
+                    })
 
                 }
 
@@ -112,7 +125,7 @@ fun SearchScreen() {
 }
 
 @Composable
-fun SearchDesignItem(index: Int) {
+fun SearchDesignItem(index: Int, onclick: () -> Unit) {
 
     val card = SearchScreenList[index]
 
@@ -120,14 +133,16 @@ fun SearchDesignItem(index: Int) {
 
         modifier = Modifier
             .padding(horizontal = 24.dp)
+            .padding(bottom = 20.dp)
             .fillMaxWidth()
-            .background(color = White),
+            .background(color = White)
+            .clickable { onclick() },
 
         shape = RoundedCornerShape(15.dp),
 
         elevation = CardDefaults.cardElevation(7.dp),
 
-        colors = CardDefaults.cardColors(containerColor = White)
+        colors = CardDefaults.cardColors(containerColor = White),
 
     ) {
 
@@ -150,7 +165,7 @@ fun SearchDesignItem(index: Int) {
                     style = MaterialTheme.typography.SearchMainText
 
                 )
-                
+
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
@@ -180,6 +195,6 @@ fun SearchDesignItem(index: Int) {
 @Preview(showBackground = true)
 fun SearchScreenPreview() {
 
-    SearchScreen()
+    SearchScreen(onMapsBranch = {})
 
 }

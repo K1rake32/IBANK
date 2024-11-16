@@ -1,19 +1,21 @@
 package com.example.ibank.ui.app.screen.auth
 
-import androidx.biometric.BiometricPrompt.AuthenticationResult
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.ibank.ui.app.BottomNavigation.BottomItem
-import com.example.ibank.ui.app.screen.main.HomeScreen
-import com.example.ibank.ui.app.screen.main.SearchScreen
+import com.example.ibank.ui.app.screen.main.Home.HomeScreen
+import com.example.ibank.ui.app.screen.main.Search.Branch
+import com.example.ibank.ui.app.screen.main.Search.SearchScreen
 
 @Composable
-fun AuthNavGraph(navController: NavHostController = rememberNavController()) {
-    NavHost(navController = navController, startDestination = "sign_in") {
+fun AuthNavGraph(navController: NavHostController = rememberNavController(), contentPadding: PaddingValues) {
+    NavHost(navController = navController, startDestination = "main_graph", modifier = Modifier.padding(contentPadding)) {
 
         composable("sign_in") {
             SignInAuth(
@@ -72,16 +74,32 @@ fun AuthNavGraph(navController: NavHostController = rememberNavController()) {
                 onConfirmAuth = {
                     navController.navigate("main_graph")
                 }
-
-
-
             )
         }
 
         navigation(startDestination = "home_screen", route = "main_graph") {
             composable("home_screen") { HomeScreen() }
-            composable("search_screen") { SearchScreen() }
+            composable("search_screen") {
+
+                SearchScreen(
+
+                    onMapsBranch = {
+
+                        navController.navigate("branch_maps")
+
+                    }
+
+                )
+
+            }
+        }
+
+        composable("branch_maps") {
+            Branch(
+
+            )
         }
 
     }
+
 }

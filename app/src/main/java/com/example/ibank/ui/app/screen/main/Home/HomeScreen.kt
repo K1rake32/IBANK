@@ -1,4 +1,4 @@
-package com.example.ibank.ui.app.screen.main
+package com.example.ibank.ui.app.screen.main.Home
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
@@ -130,7 +131,8 @@ fun HomeScreen() {
         Column(
 
             modifier = Modifier
-                .padding(24.dp),
+                .padding(horizontal = 24.dp)
+                .padding(bottom = 24.dp),
 
         ) {
 
@@ -174,6 +176,8 @@ fun HomeScreen() {
 
                 )
 
+                Spacer(modifier = Modifier.width(70.dp))
+
                 Image(
 
                     painter = painterResource(id = R.drawable.message),
@@ -191,6 +195,7 @@ fun HomeScreen() {
 
             modifier = Modifier
                 .fillMaxSize()
+                .height(100.dp)
                 .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
                 .background(White)
 
@@ -376,9 +381,11 @@ fun CardBankItem(index: Int) {
 
             modifier = Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
+                .height(75.dp)
                 .fillMaxSize(),
 
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
 
         ) {
 
