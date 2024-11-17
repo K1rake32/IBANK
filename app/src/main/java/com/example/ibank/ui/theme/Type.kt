@@ -181,6 +181,19 @@ val Typography.SearchMainText: TextStyle
         fontFamily = PoppinsSemiBold
     )
 
+val Typography.InterestingKind: TextStyle
+    get() = TextStyle(
+        fontSize = 16.sp,
+        color = GrayForText,
+        fontFamily = PoppinsSemiBold
+    )
+
+val Typography.MediumBlackText: TextStyle
+    get() = TextStyle(
+        fontSize = 16.sp,
+        color = Black,
+        fontFamily = PoppinsMedium
+    )
 
 
 

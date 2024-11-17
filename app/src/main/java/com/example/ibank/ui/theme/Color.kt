@@ -1,6 +1,7 @@
 package com.example.ibank.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -24,3 +25,5 @@ val MinorRedCard = Color(0XFFFF4267)
 val MainShapeCard = Color(0xFF1E1671)
 val MinorShapeCard = Color(0xFF4EB4FF)
 val PurpleForMinorCard = Color(0xFF5655B9)
+val GrayForText = Color(0xFF989898)
+val DividerColor = Color(0xFFECECEC)
